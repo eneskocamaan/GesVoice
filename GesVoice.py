@@ -21,7 +21,9 @@ import pygetwindow as gw
 import wikipedia
 import pywhatkit as kit
 import geocoder
+from dotenv import load_dotenv
 
+load_dotenv()
 
 
 class FirstEntry:
@@ -638,7 +640,7 @@ Bilgisayarı yeniden başlatır
 
 
     def page2(self):
-        openai.api_key = " " #chatgpt kullanmak için openai sitesinden kendinize bir key oluşturabilirsiniz
+        openai.api_key = os.getenv("OPENAI_API_KEY")
         for widget in self.widgets_to_destroy:
             widget.destroy()
         self.widgets_to_destroy = []
@@ -755,7 +757,7 @@ Bilgisayarı yeniden başlatır
 
     def create_image_dalle(self, event=None):
         global image_url
-        openai.api_key = " " #dall-e kullanmak için openai sitesinden kendinize bir key oluşturabilirsiniz
+        openai.api_key = os.getenv("OPENAI_API_KEY")
         prompt = self.prompt_entry.get()
         if prompt != "":
             self.prompt_entry.delete(0, "end")
